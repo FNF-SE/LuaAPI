@@ -1,1 +1,186 @@
-<!-- TODO -->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Shadow Engine - Mobile Functions</title>
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/header.css">
+		<link rel="stylesheet" href="../css/search.css">
+		<link rel="stylesheet" href="../css/theme.css">
+		<link rel="icon" href="../assets/icon.ico" type="image/x-icon">
+	</head>
+
+	<body>
+		<!-- Create Search Bar and Theme Boxes -->
+		<div class="sidebar"></div>
+		<div class="themeBox" onclick="switchTheme()">
+			<div class="themeDot"></div>
+			<div class="themeDot" style="margin-left: 70px"></div>
+			<button class="themeBtn" id="themeSelector"></button>
+		</div>
+
+		<!-- Load JavaScript -->
+		<script src="../js/selector.js"></script>
+		<script>createSidebarContent();</script>
+		<script src="../js/searchbar.js"></script>
+		<script src="../js/theme.js"></script>
+
+		<!-- Header -->
+		<div class="headerbox">
+			<div class="header">
+				<a href="../index.html">
+					<img width="64" src="../assets/icon.ico" alt="Shadow Engine Logo" draggable="false">
+					<div class="headertext">Shadow Engine - Lua Script API</div>
+				</a>
+			</div>
+		</div>
+
+		<!-- Page Info -->
+		<div class="infobox">
+			<h1>Mobile Functions</h1>
+			<p><b>Functions for mobile controls, touch input, vibration, and Android-specific features.</b></p>
+			<hr>
+
+			<h2 id="mobileControlsMode">mobileControlsMode</h2>
+			<p class="methodbox">mobileControlsMode:String</p>
+			<p>Returns the current mobile controls mode.</p>
+			<ul>
+				<li><code>"left"</code></li>
+				<li><code>"right"</code></li>
+				<li><code>"custom"</code></li>
+				<li><code>"hitbox"</code></li>
+				<li><code>"none"</code> / <code>"unknown"</code></li>
+			</ul>
+			<hr>
+
+			<h2 id="extraButtons">Extra Buttons</h2>
+
+			<p class="methodbox">extraButtonPressed(<span class="variablemarkup">button</span>:String):Bool</p>
+			<p class="methodbox">extraButtonJustPressed(<span class="variablemarkup">button</span>:String):Bool</p>
+			<p class="methodbox">extraButtonJustReleased(<span class="variablemarkup">button</span>:String):Bool</p>
+			<p class="methodbox">extraButtonReleased(<span class="variablemarkup">button</span>:String):Bool</p>
+
+			<p>Checks the state of the mobile extra buttons.</p>
+			<ul>
+				<li><code>"default"</code> – First extra button</li>
+				<li><code>"second"</code> – Second extra button</li>
+			</ul>
+			<hr>
+
+			<h2 id="vibrate">vibrate</h2>
+			<p class="methodbox">
+				vibrate(<span class="isoptional">?</span><span class="variablemarkup">duration</span>:Int,
+				<span class="isoptional">?</span><span class="variablemarkup">period</span>:Int):Void
+			</p>
+			<p>Triggers device vibration.</p>
+			<ul>
+				<li><b><span class="variablemarkup">duration</span></b> – Vibration duration in milliseconds.</li>
+				<li><b><span class="variablemarkup">period</span> (Optional)</b> – Delay before vibration starts.</li>
+			</ul>
+			<hr>
+
+			<h2 id="touchPad">Touch Pad</h2>
+
+			<p class="methodbox">
+				addTouchPad(<span class="variablemarkup">DPadMode</span>:String,
+				<span class="variablemarkup">ActionMode</span>:String,
+				<span class="isoptional">?</span><span class="variablemarkup">addToCustomSubstate</span>:Bool = false,
+				<span class="isoptional">?</span><span class="variablemarkup">posAtCustomSubstate</span>:Int = -1):Void
+			</p>
+			<p>Adds a Lua-controlled touch pad.</p>
+
+			<p class="methodbox">removeTouchPad():Void</p>
+			<p>Removes the current Lua touch pad.</p>
+
+			<p class="methodbox">addTouchPadCamera(<span class="isoptional">?</span><span class="variablemarkup">defaultDrawTarget</span>:Bool = false):Void</p>
+			<p>Assigns a camera to the Lua touch pad.</p>
+			<hr>
+
+			<h2 id="touchInput">Touch Input</h2>
+
+			<p class="methodbox">touchJustPressed():Bool</p>
+			<p class="methodbox">touchPressed():Bool</p>
+			<p class="methodbox">touchJustReleased():Bool</p>
+			<p class="methodbox">touchReleased():Bool</p>
+
+			<p>Global touch state checks.</p>
+			<hr>
+
+			<h2 id="touchObject">Touch Object Detection</h2>
+
+			<p class="methodbox">
+				touchPressedObject(<span class="variablemarkup">object</span>:String,
+				<span class="isoptional">?</span><span class="variablemarkup">camera</span>:String):Bool
+			</p>
+
+			<p class="methodbox">touchJustPressedObject(...):Bool</p>
+			<p class="methodbox">touchJustReleasedObject(...):Bool</p>
+			<p class="methodbox">touchReleasedObject(...):Bool</p>
+
+			<p>
+				Checks touch interaction against a Lua sprite using bounding-box overlap.
+			</p>
+
+			<p class="methodbox">touchPressedObjectComplex(...):Bool</p>
+			<p class="methodbox">touchJustPressedObjectComplex(...):Bool</p>
+			<p class="methodbox">touchJustReleasedObjectComplex(...):Bool</p>
+			<p class="methodbox">touchReleasedObjectComplex(...):Bool</p>
+
+			<p>
+				Uses pixel-perfect overlap checks for touch interaction.
+			</p>
+
+			<p class="methodbox">touchOverlapsObject(...):Bool</p>
+			<p class="methodbox">touchOverlapsObjectComplex(...):Bool</p>
+			<hr>
+
+			<h2 id="androidFunctions">Android Functions</h2>
+			<p><b>Only available on Android builds.</b></p>
+
+			<p class="methodbox">isAndroidTV:Bool</p>
+			<p class="methodbox">isTablet:Bool</p>
+			<p class="methodbox">isChromebook:Bool</p>
+			<p class="methodbox">isDeXMode:Bool</p>
+			<p class="methodbox">isDolbyAtmos:Bool</p>
+			<hr>
+
+			<h2 id="androidInput">Android Buttons</h2>
+
+			<p class="methodbox">backJustPressed:Bool</p>
+			<p class="methodbox">backPressed:Bool</p>
+			<p class="methodbox">backJustReleased:Bool</p>
+
+			<p class="methodbox">menuJustPressed:Bool</p>
+			<p class="methodbox">menuPressed:Bool</p>
+			<p class="methodbox">menuJustReleased:Bool</p>
+			<hr>
+
+			<h2 id="androidSystem">Android System</h2>
+
+			<p class="methodbox">getCurrentOrientation():String</p>
+			<p class="methodbox">setOrientation(<span class="isoptional">?</span><span class="variablemarkup">hint</span>:String):Void</p>
+
+			<p class="methodbox">minimizeWindow():Void</p>
+			<p class="methodbox">manualBackButton():Void</p>
+			<hr>
+
+			<h2 id="androidUI">Android UI</h2>
+
+			<p class="methodbox">
+				showToast(<span class="variablemarkup">text</span>:String,
+				<span class="variablemarkup">duration</span>:Int,
+				<span class="isoptional">?</span><span class="variablemarkup">xOffset</span>:Int,
+				<span class="isoptional">?</span><span class="variablemarkup">yOffset</span>:Int):Void
+			</p>
+
+			<p class="methodbox">isScreenKeyboardShown():Bool</p>
+			<hr>
+
+			<h2 id="clipboard">Clipboard</h2>
+
+			<p class="methodbox">clipboardHasText():Bool</p>
+			<p class="methodbox">clipboardGetText():String</p>
+			<p class="methodbox">clipboardSetText(<span class="variablemarkup">text</span>:String):Void</p>
+		</div>
+	</body>
+</html>

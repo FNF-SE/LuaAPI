@@ -61,26 +61,107 @@
 			<hr>
 			
 			<h2 id="makeAnimatedLuaSprite">makeAnimatedLuaSprite</h2>
-			<p class="methodbox">makeAnimatedLuaSprite(<span class="variablemarkup">tag</span>:String,
+			<p class="methodbox">
+				makeAnimatedLuaSprite(<span class="variablemarkup">tag</span>:String,
 				<span class="isoptional">?</span><span class="variablemarkup">image</span>:String = null,
 				<span class="isoptional">?</span><span class="variablemarkup">x</span>:Float = 0,
 				<span class="isoptional">?</span><span class="variablemarkup">y</span>:Float = 0,
-				<span class="isoptional">?</span><span class="variablemarkup">spriteType</span>:String = 'auto'):Void
-			<p>Creates an animated Lua Sprite with a specific image and .XML/.JSON/.TXT, then store it as the name input in "tag".</p>
+				<span class="isoptional">?</span><span class="variablemarkup">spriteType</span>:String = "sparrow",
+				<span class="isoptional">?</span><span class="variablemarkup">swfMode</span>:Bool = false,
+				<span class="isoptional">?</span><span class="variablemarkup">cacheOnLoad</span>:Bool = false
+				):Void
+			</p>
+
+			<p>
+				Creates an animated Lua Sprite using a spritesheet and its accompanying data file,
+				then stores it internally under the given <code>tag</code>.
+			</p>
+
 			<ul>
-				<li><b><span class="variablemarkup">tag</span></b> - Lua Sprite nametag to save.</li>
-				<li><b><span class="variablemarkup">image</span> (Optional)</b> - Image to display, don't include the extension!</li>
-				<li><b><span class="variablemarkup">x</span> (Optional)</b> - Defaults to 0.</li>
-				<li><b><span class="variablemarkup">y</span> (Optional)</b> - Defaults to 0.</li>
-				<li><b><span class="variablemarkup">spriteType</span> (Optional)</b> - Forces a spritesheet type, can be "sparrow" (.XML), "packer" (.TXT) or "aseprite" (.JSON). Defaults to "auto".</li>
+				<li>
+					<b><span class="variablemarkup">tag</span></b> –  
+					Lua Sprite nametag used to reference and store the sprite.  
+					Periods (<code>.</code>) are automatically stripped.
+				</li>
+
+				<li>
+					<b><span class="variablemarkup">image</span> (Optional)</b> –  
+					Base image path without extension.  
+					The engine will automatically load the associated <code>.png</code> and metadata file.
+				</li>
+
+				<li>
+					<b><span class="variablemarkup">x</span> (Optional)</b> –  
+					X position of the sprite. Defaults to <code>0</code>.
+				</li>
+
+				<li>
+					<b><span class="variablemarkup">y</span> (Optional)</b> –  
+					Y position of the sprite. Defaults to <code>0</code>.
+				</li>
+
+				<li>
+					<b><span class="variablemarkup">spriteType</span> (Optional)</b> –  
+					Forces the spritesheet format.  
+					Accepted values:
+					<ul>
+						<li><code>"sparrow"</code> – TexturePacker XML</li>
+						<li><code>"packer"</code> – TexturePacker TXT</li>
+						<li><code>"aseprite"</code> – Aseprite JSON</li>
+					</ul>
+					Defaults to <code>"sparrow"</code>.
+				</li>
+
+				<li>
+					<b><span class="variablemarkup">swfMode</span> (Optional)</b> –  
+					Enables SWF-style frame loading behavior when supported.  
+					Defaults to <code>false</code>.
+				</li>
+
+				<li>
+					<b><span class="variablemarkup">cacheOnLoad</span> (Optional)</b> –  
+					Caches frames immediately when loading the sprite, reducing runtime lag
+					at the cost of memory usage.  
+					Defaults to <code>false</code>.
+				</li>
 			</ul>
+
 			<h4>Examples:</h4>
 			<ul class="methoddiv">
-				<li class="exampleitem"><span class="methodexample">makeAnimatedLuaSprite('mySprite', 'logoBumpin')</span> - Create a Lua Sprite with tag "mySprite" displaying <span class="methodexample">assets/shared/images/logoBumpin</span>, using its .PNG and .XML files.</li>
-				<li class="exampleitem"><span class="methodexample">makeAnimatedLuaSprite('mySprite', 'aseprite-test', 0, 0, 'aseprite')</span> - Create a Lua Sprite with tag "mySprite" displaying <span class="methodexample">mods/My-Mod/images/aseprite-test</span>, using its .PNG and .JSON files.</li>
+				<li class="exampleitem">
+					<span class="methodexample">
+						makeAnimatedLuaSprite('mySprite', 'logoBumpin')
+					</span> –  
+					Creates an animated Lua Sprite using  
+					<code>assets/shared/images/logoBumpin.png</code> and its XML data.
+				</li>
+
+				<li class="exampleitem">
+					<span class="methodexample">
+						makeAnimatedLuaSprite('mySprite', 'aseprite-test', 0, 0, 'aseprite')
+					</span> –  
+					Creates an animated Lua Sprite using an Aseprite-exported JSON file.
+				</li>
+
+				<li class="exampleitem">
+					<span class="methodexample">
+						makeAnimatedLuaSprite('cachedSprite', 'bigSprite', 100, 200, 'sparrow', false, true)
+					</span> –  
+					Creates a sprite and caches all frames immediately on load.
+				</li>
 			</ul>
-			<p style="color: gray">Note: You will still have to add the Lua Sprite to the scene with <a href="#addLuaSprite">addLuaSprite</a> or it won't be visible.</p>
-			<p style="color: gray">Note 2: <a href="https://github.com/ShadowMario/FNF-PsychEngine/wiki/Export-and-Import-from-Aseprite">Follow these instructions to export properly from Aseprite</a>.</p>
+
+			<p style="color: gray">
+				Note: You must still add the sprite to the scene using
+				<a href="#addLuaSprite">addLuaSprite</a>, or it will not be visible.
+			</p>
+
+			<p style="color: gray">
+				Note 2:
+				<a href="https://github.com/ShadowMario/FNF-PsychEngine/wiki/Export-and-Import-from-Aseprite">
+				Follow these instructions to export properly from Aseprite
+				</a>.
+			</p>
 			<hr>
 
 			<h2 id="makeGraphic">makeGraphic</h2>
