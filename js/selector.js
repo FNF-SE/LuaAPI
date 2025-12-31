@@ -269,6 +269,7 @@ function createSidebarContent(prefix) {
 		'setShaderSampler2D': 'shaders.html',
 
 		// Mobile
+		'mobileC': 'mobile.html',
 		'mobileControlsMode': 'mobile.html',
 		'extraButtonPressed': 'mobile.html',
 		'extraButtonJustPressed': 'mobile.html',
@@ -316,6 +317,7 @@ function createSidebarContent(prefix) {
 		'clipboardHasText': 'mobile.html',
 		'clipboardGetText': 'mobile.html',
 		'clipboardSetText': 'mobile.html',
+		'setActivityTitle': 'mobile.html',
 
 		// Uncategorized
 		'FlxColor': 'uncategorized.html',
